@@ -9,7 +9,5 @@ passlib[bcrypt]
 starlette
 motor
 jwt
-secrets
-OpenSSL
 python-multipart
 cryptography
