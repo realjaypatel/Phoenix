@@ -11,3 +11,4 @@ motor
 jwt
 python-multipart
 cryptography
+requests

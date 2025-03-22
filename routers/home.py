@@ -7,7 +7,7 @@ import utils
 import pandas as pd
 import numpy as np
 templates = Jinja2Templates(directory="templates")
-
+import requests
 
 
 
@@ -30,38 +30,16 @@ router = APIRouter(
 @router.get('/', status_code=status.HTTP_200_OK)
 async def return_home(request: Request):
     user = utils.Validate_User(request)
-    print("user",user)
-    # if 'name' not in user.keys():
-    #     user['name'] = 'Unknown Name'
+    print('user :',user)
     if user['status'] != 'pass':
-        user = {
-            
-            'data':{
-            
-            'name':'Sign In'
-        } 
-        } 
+        user = {'data':{'name':'Sign In'} }     
+    data2 = requests.get('https://excel2api.vercel.app/api/1BSOoMb-j3ALwi56lgSW8x7q17iNGSbuq1gpi9vV_ZOQ')
+    # print('fetched data2 :',data2)
+    data2 = data2.json()
+
                
 
-    return templates.TemplateResponse("home.html", {"request": request,"user":user['data']})
-
-@router.get('/api', status_code=status.HTTP_200_OK)
-async def return_home2(request: Request):
-    user = utils.Validate_User(request)
-    print("user",user)
-    # if 'name' not in user.keys():
-    #     user['name'] = 'Unknown Name'
-    if user['status'] != 'pass':
-        user = {
-            
-            'data':{
-            
-            'name':'Sign In'
-        } 
-        } 
-               
-
-    return templates.TemplateResponse("product.html", {"request": request,"user":user['data']})
+    return templates.TemplateResponse("home.html", {"request": request,"user":user['data'],"data":data2})
 
 
 

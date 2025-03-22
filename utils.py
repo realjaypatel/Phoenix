@@ -1,5 +1,5 @@
 from passlib.context import CryptContext
-import jwt
+from jose import JWTError, jwt
 from datetime import datetime, timedelta
 from fastapi import FastAPI, Depends, HTTPException, status
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
@@ -40,7 +40,7 @@ ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 def Validate_User(request):
     token = request.state.token
-    print('validate_user',token)
+    # print('validate_user',token)
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",
@@ -49,9 +49,9 @@ def Validate_User(request):
 
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        print('payload',payload)
+        # print('payload',payload)
         email = payload['data']
-        print('email',email)
+        # print('email',email)
         if email is None:
             return {'status':'fail','data':credentials_exception} 
     except :

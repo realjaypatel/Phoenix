@@ -2,7 +2,7 @@ from starlette import status
 from fastapi.templating import Jinja2Templates
 from fastapi import APIRouter, Depends, HTTPException, Path, Request, status, Form,Response
 import json
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, RedirectResponse
 
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
@@ -62,43 +62,24 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
 
 @router.get('/login', status_code=status.HTTP_200_OK)
 async def return_home(request: Request):
-    print('got a req')
-    return templates.TemplateResponse("auth/login.html", {"request": request})
+    # print('got a req')
+    return templates.TemplateResponse("auth/login.html", {"request": request,"message":''})
 
 @router.get('/signup', status_code=status.HTTP_200_OK)
 async def return_home(request: Request):
-    return templates.TemplateResponse("auth/signup.html", {"request": request})
+    return templates.TemplateResponse("auth/signup.html", {"request": request,"message":''})
 
-# @router.post("/token", response_model=Token)
-# async def login(response: Response, form_data: OAuth2PasswordRequestForm = Depends()):
-#     user = await db["users"].find_one({"email": form_data.username})
-#     if not user or not verify_password(form_data.password, user["password"]):
-#         raise HTTPException(
-#             status_code=status.HTTP_401_UNAUTHORIZED,
-#             detail="Incorrect email or password",
-#             headers={"WWW-Authenticate": "Bearer"},
-#         )
-#     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-#     access_token = create_access_token({"data": user["email"]}, expires_delta=access_token_expires)
-#     response = JSONResponse(content={"access_token": access_token, "token_type": "bearer"})
-#     response.set_cookie(key="access_token", value=access_token, httponly=True)
-#     return response
 
 
 @router.post("/token")
-async def login_for_access_token(email: str = Form(...), password: str = Form(...)):
-    print('got a token req')
+async def login_for_access_token(request:Request,email: str = Form(...), password: str = Form(...)):
     user = await db["users"].find_one({"email": email})
-    print('founded user:',user )
     if not user:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Incorrect username or password",
-            headers={"WWW-Authenticate": "Bearer"},
-        )
+        return templates.TemplateResponse("auth/login.html", {"request": request,"message":'Incorrect username or password'})
+
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token({"data": user["email"]}, expires_delta=access_token_expires)
-    response = JSONResponse(content={"access_token": access_token, "token_type": "bearer"})
+    response = RedirectResponse(url="/explore", status_code=status.HTTP_303_SEE_OTHER)
     response.set_cookie(key="access_token", value=access_token, httponly=True)
     return response
 
@@ -112,9 +93,9 @@ def Validate_User(request):
     )
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        print('payload',payload)
+        # print('payload',payload)
         email = payload['data']
-        print('email',email)
+        # print('email',email)
         if email is None:
             return {'status':'fail','data':credentials_exception} 
     except :
@@ -136,22 +117,18 @@ async def read_page1(request:Request):
 
 
 @router.post("/signup")
-async def signup(name: str = Form(...),email: str = Form(...), password: str = Form(...)):
-    # hashed_password = (password)
-    # user = {"email": email, "password": hashed_password}
-    # res = await db["users"].insert_one(user)
-    # return JSONResponse(status_code=201, content={"id": str(res.inserted_id), "email": email})
-    # print('got a token req')
+async def signup(request:Request,name: str = Form(...),email: str = Form(...), password: str = Form(...)):
     try:
         user = await db["users"].find_one({"email": email})
         if user:
-            return 'email already exist'
+            return templates.TemplateResponse("auth/signup.html", {"request": request,"message":'email already exist !'})
+
         hashed_password = (password)
         user = {"email": email, "password": hashed_password,"name":name}
         res = await db["users"].insert_one(user)
         access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
         access_token = create_access_token({"data": user["email"]}, expires_delta=access_token_expires)
-        response = JSONResponse(content={"access_token": access_token, "token_type": "bearer"})
+        response = RedirectResponse(url="/explore", status_code=status.HTTP_303_SEE_OTHER)
         response.set_cookie(key="access_token", value=access_token, httponly=True)
         return response      
         
@@ -162,106 +139,8 @@ async def signup(name: str = Form(...),email: str = Form(...), password: str = F
 
 
 @router.get("/signout")
-async def signout():
-    response = JSONResponse(content={"message": "Successfully signed out"})
+async def signout(request:Request):
+    
+    response = templates.TemplateResponse("auth/login.html", {"request": request,"message":'Signout Successful!'})
     response.delete_cookie(key="access_token")
     return response
-
-# SECRET_KEY = "your_secret_key"
-# ALGORITHM = "HS256"
-# ACCESS_TOKEN_EXPIRE_MINUTES = 30
-
-# pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-# oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
-
-# class User(BaseModel):
-#     email: str
-#     password: str
-
-# class Token(BaseModel):
-#     access_token: str
-#     token_type: str
-
-# def verify_password(plain_password, hashed_password):
-#     return pwd_context.verify(plain_password, hashed_password)
-
-# def get_password_hash(password):
-#     return pwd_context.hash(password)
-
-# def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
-#     to_encode = data.copy()
-#     if expires_delta:
-#         expire = datetime.utcnow() + expires_delta
-#     else:
-#         expire = datetime.utcnow() + timedelta(minutes=15)
-#     to_encode.update({"exp": expire})
-#     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
-#     return encoded_jwt
-
-
-
-# @router.post("/signup")
-# async def signup(email: str = Form(...), password: str = Form(...)):
-#     print('got a req /signup',email,password)
-#     hashed_password = get_password_hash(password)
-#     user = {"email": email, "password": hashed_password}
-#     res = await db["users"].insert_one(user)
-#     return JSONResponse(status_code=201, content={"id": str(res.inserted_id), "email": email})
-
-# @router.post("/token", response_model=Token)
-# async def login(response: Response, form_data: OAuth2PasswordRequestForm = Depends()):
-#     user = await db["users"].find_one({"email": form_data.username})
-#     if not user or not verify_password(form_data.password, user["password"]):
-#         raise HTTPException(
-#             status_code=status.HTTP_401_UNAUTHORIZED,
-#             detail="Incorrect email or password",
-#             headers={"WWW-Authenticate": "Bearer"},
-#         )
-#     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-#     access_token = create_access_token(
-#         data={"sub": user["email"]}, expires_delta=access_token_expires
-#     )
-#     response.set_cookie(key="access_token", value=f"Bearer {access_token}", httponly=True)
-#     return {"access_token": access_token, "token_type": "bearer"}
-
-
-# @router.get("/users/me")
-# async def read_users_me(token: str = Depends(oauth2_scheme)):
-    
-#     print('/me',token)
-#     credentials_exception = HTTPException(
-#         status_code=status.HTTP_401_UNAUTHORIZED,
-#         detail="Could not validate credentials",
-#         headers={"WWW-Authenticate": "Bearer"},
-#     )
-#     try:
-#         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-#         email: str = payload.get("sub")
-#         if email is None:
-#             raise credentials_exception
-#     except jwt.PyJWTError:
-#         raise credentials_exception
-#     user = await db["users"].find_one({"email": email})
-#     if user is None:
-#         raise credentials_exception
-#     return user
-
-
-# # @app.get("/users/me")
-# # async def read_users_me(token: str = Depends(oauth2_scheme)):
-# #     credentials_exception = HTTPException(
-# #         status_code=status.HTTP_401_UNAUTHORIZED,
-# #         detail="Could not validate credentials",
-# #         headers={"WWW-Authenticate": "Bearer"},
-# #     )
-# #     try:
-# #         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-# #         email: str = payload.get("sub")
-# #         if email is None:
-# #             raise credentials_exception
-# #     except jwt.PyJWTError:
-# #         raise credentials_exception
-# #     user = await db["users"].find_one({"email": email})
-# #     if user is None:
-# #         raise credentials_exception
-# #     return user
