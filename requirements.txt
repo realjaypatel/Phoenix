@@ -1,0 +1,10 @@
+fastapi
+pymongo
+uvicorn
+jinja2
+numpy
+pandas
+python-jose[cryptography]
+passlib[bcrypt]
+starlette
+motor
