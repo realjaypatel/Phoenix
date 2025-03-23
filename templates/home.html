@@ -1,77 +1,163 @@
 {% include 'includes/topbar.html' %}
 <link href="/static/css/swiper-bundle.min.css" rel="stylesheet">
- {% include 'includes/navbar.html' %}
+{% include 'includes/navbar.html' %}
 
 <div class="content">
-  <nav class="mb-3" aria-label="breadcrumb">
-    <ol class="breadcrumb mb-0">
-      <li class="breadcrumb-item"><a href="#!">Page 1</a></li>
-      <li class="breadcrumb-item"><a href="#!">Page 2</a></li>
-      <li class="breadcrumb-item active">Default</li>
-    </ol>
-  </nav>
-  <div class="row gx-6 gy-3 mb-4 align-items-center">
+
+  <div class="border-bottom border-translucent mx-n4 mx-lg-n6 px-4 px-lg-6 pb-5">
+    <div class="row justify-content-between gy-4">
+      <div class="col-auto">
+        <h2>New Listings <span class="text-body-tertiary fw-semibold"></span></h2>
+      </div>
+      <div class="col-auto d-flex flex-wrap gap-2">
+        <div class="search-box">
+          <form class="position-relative" id="searchForm2">
+            <input class="form-control search-input search" type="search"
+              placeholder="Search by name" aria-label="Search" id="searchInput2">
+            <svg class="svg-inline--fa fa-magnifying-glass search-box-icon" aria-hidden="true" focusable="false"
+              data-prefix="fas" data-icon="magnifying-glass" role="img" xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512" data-fa-i2svg="">
+              <path fill="currentColor"
+                d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z">
+              </path>
+            </svg><!-- <span class="fas fa-search search-box-icon"></span> Font Awesome fontawesome.com -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mx-n4 mx-lg-n6 px-4 px-lg-6 py-5 border-bottom border-translucent">
+    <h4>Most Recent Boards</h4>
+    <p class="mb-4">Boards you’ve visited recently. Can be private or public boards. <a href="#!"> Change preference</a>
+    </p>
+    <div class="swiper-theme-container kanban-boards-slider">
+      <div class="swiper theme-slider swiper-initialized swiper-horizontal swiper-backface-hidden"
+        data-swiper="{&quot;slidesPerView&quot;:1,&quot;spaceBetween&quot;:24,&quot;speed&quot;:800,&quot;breakpoints&quot;:{&quot;576&quot;:{&quot;slidesPerView&quot;:2},&quot;1200&quot;:{&quot;slidesPerView&quot;:3},&quot;1540&quot;:{&quot;slidesPerView&quot;:4}}}">
+        <div class="swiper-wrapper" id="swiper-wrapper-1a4fb9168339d6ac" aria-live="polite">
+
+          {% for dataa in data[0:5] %}
+          <div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 5"
+            style="width: 361.25px; margin-right: 24px;"><a class="text-decoration-none"
+              href="../../apps/kanban/kanban.html">
+              <div class="card overflow-hidden bg-transparent h-100">
+                <div class="position-relative">
+                  <div class="bg-info-darker" style="height: 128px"></div>
+                  <div class="avatar-group position-absolute" style="bottom: 1rem; left: 1.5rem">
+                    <div class="avatar avatar-m  border border-light-subtle rounded-circle">
+                      <img class="rounded-circle " src="../../assets/img/team/1.webp" alt="">
+                    </div>
+                    <div class="avatar avatar-m  border border-light-subtle rounded-circle">
+                      <img class="rounded-circle " src="../../assets/img/team/2.webp" alt="">
+                    </div>
+                    <div class="avatar avatar-m  border border-light-subtle rounded-circle">
+                      <img class="rounded-circle " src="../../assets/img/team/3.webp" alt="">
+                    </div>
+                    <div class="avatar avatar-m  border border-light-subtle rounded-circle">
+                      <img class="rounded-circle " src="../../assets/img/team/4.webp" alt="">
+                    </div>
+                    <div class="avatar avatar-m  border border-light-subtle rounded-circle">
+                      <img class="rounded-circle " src="../../assets/img/team/avatar-placeholder.webp" alt="">
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body d-flex flex-column justify-content-between">
+                  <div>
+                    <h3 class="text-body">{{dataa.Title}}</h3>
+                    <p class="text-body-tertiary mb-4">Daily task</p>
+                  </div>
+                  <div class="d-flex gap-4">
+                    <h5 class="text-body"><svg class="svg-inline--fa fa-list-check text-body-tertiary me-1"
+                        aria-hidden="true" focusable="false" data-prefix="fas" data-icon="list-check" role="img"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                        <path fill="currentColor"
+                          d="M152.1 38.2c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 113C-2.3 103.6-2.3 88.4 7 79s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zm0 160c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 273c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zM224 96c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zm0 160c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zM160 416c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H192c-17.7 0-32-14.3-32-32zM48 368a48 48 0 1 1 0 96 48 48 0 1 1 0-96z">
+                        </path>
+                      </svg><!-- <span class="fa-solid fa-list-check text-body-tertiary me-1"></span> Font Awesome fontawesome.com -->44
+                    </h5>
+                    <h5 class="text-body"><svg class="svg-inline--fa fa-comment text-body-tertiary me-1"
+                        aria-hidden="true" focusable="false" data-prefix="fas" data-icon="comment" role="img"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                        <path fill="currentColor"
+                          d="M512 240c0 114.9-114.6 208-256 208c-37.1 0-72.3-6.4-104.1-17.9c-11.9 8.7-31.3 20.6-54.3 30.6C73.6 471.1 44.7 480 16 480c-6.5 0-12.3-3.9-14.8-9.9c-2.5-6-1.1-12.8 3.4-17.4l0 0 0 0 0 0 0 0 .3-.3c.3-.3 .7-.7 1.3-1.4c1.1-1.2 2.8-3.1 4.9-5.7c4.1-5 9.6-12.4 15.2-21.6c10-16.6 19.5-38.4 21.4-62.9C17.7 326.8 0 285.1 0 240C0 125.1 114.6 32 256 32s256 93.1 256 208z">
+                        </path>
+                      </svg><!-- <span class="fa-solid fa-comment text-body-tertiary me-1"></span> Font Awesome fontawesome.com -->12
+                    </h5>
+                    <h5 class="text-body"><svg class="svg-inline--fa fa-calendar-xmark text-body-tertiary me-1"
+                        aria-hidden="true" focusable="false" data-prefix="fas" data-icon="calendar-xmark" role="img"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+                        <path fill="currentColor"
+                          d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zM305 305c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47z">
+                        </path>
+                      </svg><!-- <span class="fa-solid fa-calendar-xmark text-body-tertiary me-1"></span> Font Awesome fontawesome.com -->3
+                    </h5>
+                  </div>
+                </div>
+              </div>
+            </a></div>
+
+            {%endfor%}
+        </div>
+        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+      </div>
+      <div class="swiper-nav">
+        <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide"
+          aria-controls="swiper-wrapper-1a4fb9168339d6ac" aria-disabled="false"><svg
+            class="svg-inline--fa fa-chevron-right fs-11" aria-hidden="true" focusable="false" data-prefix="fas"
+            data-icon="chevron-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"
+            data-fa-i2svg="">
+            <path fill="currentColor"
+              d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z">
+            </path>
+          </svg><!-- <span class="fas fa-chevron-right fs-11"></span> Font Awesome fontawesome.com --></div>
+        <div class="swiper-button-prev swiper-button-disabled" tabindex="-1" role="button" aria-label="Previous slide"
+          aria-controls="swiper-wrapper-1a4fb9168339d6ac" aria-disabled="true"><svg
+            class="svg-inline--fa fa-chevron-left fs-11" aria-hidden="true" focusable="false" data-prefix="fas"
+            data-icon="chevron-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"
+            data-fa-i2svg="">
+            <path fill="currentColor"
+              d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z">
+            </path>
+          </svg><!-- <span class="fas fa-chevron-left fs-11"></span> Font Awesome fontawesome.com --></div>
+      </div>
+    </div>
+  </div>
+  <div class="row gx-6 gy-3 mt-4 mb-4 align-items-center">
     <div class="col-auto">
       <h2 class="mb-0">
-        Projects <span class="fw-normal text-body-tertiary ms-3">(32)</span>
+        Business <span class="fw-normal text-body-tertiary ms-3">({{data | length}})</span>
       </h2>
     </div>
     <div class="col-auto">
-      <a
-        class="btn btn-primary px-5"
-        href="../../apps/project-management/create-new.html"
-        ><svg
-          class="svg-inline--fa fa-plus me-2"
-          aria-hidden="true"
-          focusable="false"
-          data-prefix="fas"
-          data-icon="plus"
-          role="img"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 448 512"
-          data-fa-i2svg=""
-        >
-          <path
-            fill="currentColor"
-            d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"
-          ></path></svg
-        ><!-- <i class="fa-solid fa-plus me-2"></i> Font Awesome fontawesome.com -->Add
-        new project</a
-      >
+      <a class="btn btn-primary px-5" href="../../apps/project-management/create-new.html"><svg
+          class="svg-inline--fa fa-plus me-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus"
+          role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+          <path fill="currentColor"
+            d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z">
+          </path>
+        </svg><!-- <i class="fa-solid fa-plus me-2"></i> Font Awesome fontawesome.com -->List your Business/Startup</a>
     </div>
   </div>
   <div class="row justify-content-between align-items-end mb-4 g-3">
     <div class="col-12 col-sm-auto">
       <ul class="nav nav-links mx-n2">
         <li class="nav-item">
-          <a class="nav-link px-2 py-1 active" aria-current="page" href="#"
-            ><span>All</span
-            ><span class="text-body-tertiary fw-semibold">(32)</span></a
-          >
+          <a class="nav-link px-2 py-1 active" aria-current="page" href="#"><span>All</span><span
+              class="text-body-tertiary fw-semibold"></span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link px-2 py-1" href="#"
-            ><span>Ongoing</span
-            ><span class="text-body-tertiary fw-semibold">(14)</span></a
-          >
+          <a class="nav-link px-2 py-1" href="#"><span>Applications</span><span
+              class="text-body-tertiary fw-semibold"></span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link px-2 py-1" href="#"
-            ><span>Cancelled</span
-            ><span class="text-body-tertiary fw-semibold">(2)</span></a
-          >
+          <a class="nav-link px-2 py-1" href="#"><span>Startup</span><span
+              class="text-body-tertiary fw-semibold"></span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link px-2 py-1" href="#"
-            ><span>Finished</span
-            ><span class="text-body-tertiary fw-semibold">(14)</span></a
-          >
+          <a class="nav-link px-2 py-1" href="#"><span>AI</span><span class="text-body-tertiary fw-semibold"></span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link px-2 py-1" href="#"
-            ><span>Postponed</span
-            ><span class="text-body-tertiary fw-semibold">(2)</span></a
-          >
+          <a class="nav-link px-2 py-1" href="#"><span>Webstore</span><span
+              class="text-body-tertiary fw-semibold"></span></a>
         </li>
       </ul>
     </div>
@@ -79,138 +165,77 @@
       <div class="d-flex align-items-center">
         <div class="search-box me-3">
           <form class="position-relative">
-            <input
-              class="form-control search-input search"
-              type="search"
-              placeholder="Search projects"
-              aria-label="Search"
-            />
-            <svg
-              class="svg-inline--fa fa-magnifying-glass search-box-icon"
-              aria-hidden="true"
-              focusable="false"
-              data-prefix="fas"
-              data-icon="magnifying-glass"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 512 512"
-              data-fa-i2svg=""
-            >
-              <path
-                fill="currentColor"
-                d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"
-              ></path></svg
-            ><!-- <span class="fas fa-search search-box-icon"></span> Font Awesome fontawesome.com -->
+            <input class="form-control search-input search" type="search" placeholder="Search projects"
+              aria-label="Search" />
+            <svg class="svg-inline--fa fa-magnifying-glass search-box-icon" aria-hidden="true" focusable="false"
+              data-prefix="fas" data-icon="magnifying-glass" role="img" xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512" data-fa-i2svg="">
+              <path fill="currentColor"
+                d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z">
+              </path>
+            </svg><!-- <span class="fas fa-search search-box-icon"></span> Font Awesome fontawesome.com -->
           </form>
         </div>
-        <a
-          class="btn btn-phoenix-primary px-3 me-1"
-          href="../../apps/project-management/project-list-view.html"
-          data-bs-toggle="tooltip"
-          data-bs-placement="top"
-          data-bs-title="List view"
-          ><svg
-            class="svg-inline--fa fa-list fs-10"
-            aria-hidden="true"
-            focusable="false"
-            data-prefix="fas"
-            data-icon="list"
-            role="img"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 512 512"
-            data-fa-i2svg=""
-          >
-            <path
-              fill="currentColor"
-              d="M40 48C26.7 48 16 58.7 16 72v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V232c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zM40 368c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V392c0-13.3-10.7-24-24-24H40z"
-            ></path></svg
-          ><!-- <span class="fa-solid fa-list fs-10"></span> Font Awesome fontawesome.com --></a
-        ><a
-          class="btn btn-phoenix-primary px-3 me-1"
-          href="../../apps/project-management/project-board-view.html"
-          data-bs-toggle="tooltip"
-          data-bs-placement="top"
-          data-bs-title="Board view"
-          ><svg
-            width="9"
-            height="9"
-            viewBox="0 0 9 9"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+        <a class="btn btn-phoenix-primary px-3 me-1" href="../../apps/project-management/project-list-view.html"
+          data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="List view"><svg
+            class="svg-inline--fa fa-list fs-10" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="list"
+            role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+            <path fill="currentColor"
+              d="M40 48C26.7 48 16 58.7 16 72v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V232c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zM40 368c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V392c0-13.3-10.7-24-24-24H40z">
+            </path>
+          </svg><!-- <span class="fa-solid fa-list fs-10"></span> Font Awesome fontawesome.com --></a><a
+          class="btn btn-phoenix-primary px-3 me-1" href="../../apps/project-management/project-board-view.html"
+          data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Board view"><svg width="9" height="9"
+            viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M0 0.5C0 0.223857 0.223858 0 0.5 0H1.83333C2.10948 0 2.33333 0.223858 2.33333 0.5V1.83333C2.33333 2.10948 2.10948 2.33333 1.83333 2.33333H0.5C0.223857 2.33333 0 2.10948 0 1.83333V0.5Z"
-              fill="currentColor"
-            ></path>
+              fill="currentColor"></path>
             <path
               d="M3.33333 0.5C3.33333 0.223857 3.55719 0 3.83333 0H5.16667C5.44281 0 5.66667 0.223858 5.66667 0.5V1.83333C5.66667 2.10948 5.44281 2.33333 5.16667 2.33333H3.83333C3.55719 2.33333 3.33333 2.10948 3.33333 1.83333V0.5Z"
-              fill="currentColor"
-            ></path>
+              fill="currentColor"></path>
             <path
               d="M6.66667 0.5C6.66667 0.223857 6.89052 0 7.16667 0H8.5C8.77614 0 9 0.223858 9 0.5V1.83333C9 2.10948 8.77614 2.33333 8.5 2.33333H7.16667C6.89052 2.33333 6.66667 2.10948 6.66667 1.83333V0.5Z"
-              fill="currentColor"
-            ></path>
+              fill="currentColor"></path>
             <path
               d="M0 3.83333C0 3.55719 0.223858 3.33333 0.5 3.33333H1.83333C2.10948 3.33333 2.33333 3.55719 2.33333 3.83333V5.16667C2.33333 5.44281 2.10948 5.66667 1.83333 5.66667H0.5C0.223857 5.66667 0 5.44281 0 5.16667V3.83333Z"
-              fill="currentColor"
-            ></path>
+              fill="currentColor"></path>
             <path
               d="M3.33333 3.83333C3.33333 3.55719 3.55719 3.33333 3.83333 3.33333H5.16667C5.44281 3.33333 5.66667 3.55719 5.66667 3.83333V5.16667C5.66667 5.44281 5.44281 5.66667 5.16667 5.66667H3.83333C3.55719 5.66667 3.33333 5.44281 3.33333 5.16667V3.83333Z"
-              fill="currentColor"
-            ></path>
+              fill="currentColor"></path>
             <path
               d="M6.66667 3.83333C6.66667 3.55719 6.89052 3.33333 7.16667 3.33333H8.5C8.77614 3.33333 9 3.55719 9 3.83333V5.16667C9 5.44281 8.77614 5.66667 8.5 5.66667H7.16667C6.89052 5.66667 6.66667 5.44281 6.66667 5.16667V3.83333Z"
-              fill="currentColor"
-            ></path>
+              fill="currentColor"></path>
             <path
               d="M0 7.16667C0 6.89052 0.223858 6.66667 0.5 6.66667H1.83333C2.10948 6.66667 2.33333 6.89052 2.33333 7.16667V8.5C2.33333 8.77614 2.10948 9 1.83333 9H0.5C0.223857 9 0 8.77614 0 8.5V7.16667Z"
-              fill="currentColor"
-            ></path>
+              fill="currentColor"></path>
             <path
               d="M3.33333 7.16667C3.33333 6.89052 3.55719 6.66667 3.83333 6.66667H5.16667C5.44281 6.66667 5.66667 6.89052 5.66667 7.16667V8.5C5.66667 8.77614 5.44281 9 5.16667 9H3.83333C3.55719 9 3.33333 8.77614 3.33333 8.5V7.16667Z"
-              fill="currentColor"
-            ></path>
+              fill="currentColor"></path>
             <path
               d="M6.66667 7.16667C6.66667 6.89052 6.89052 6.66667 7.16667 6.66667H8.5C8.77614 6.66667 9 6.89052 9 7.16667V8.5C9 8.77614 8.77614 9 8.5 9H7.16667C6.89052 9 6.66667 8.77614 6.66667 8.5V7.16667Z"
-              fill="currentColor"
-            ></path></svg></a
-        ><a
-          class="btn btn-phoenix-primary px-3 border-0 text-body"
-          href="../../apps/project-management/project-card-view.html"
-          data-bs-toggle="tooltip"
-          data-bs-placement="top"
-          data-bs-title="Card view"
-          ><svg
-            width="9"
-            height="9"
-            viewBox="0 0 9 9"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+              fill="currentColor"></path>
+          </svg></a><a class="btn btn-phoenix-primary px-3 border-0 text-body"
+          href="../../apps/project-management/project-card-view.html" data-bs-toggle="tooltip" data-bs-placement="top"
+          data-bs-title="Card view"><svg width="9" height="9" viewBox="0 0 9 9" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
             <path
               d="M0 0.5C0 0.223858 0.223858 0 0.5 0H3.5C3.77614 0 4 0.223858 4 0.5V3.5C4 3.77614 3.77614 4 3.5 4H0.5C0.223858 4 0 3.77614 0 3.5V0.5Z"
-              fill="currentColor"
-            ></path>
+              fill="currentColor"></path>
             <path
               d="M0 5.5C0 5.22386 0.223858 5 0.5 5H3.5C3.77614 5 4 5.22386 4 5.5V8.5C4 8.77614 3.77614 9 3.5 9H0.5C0.223858 9 0 8.77614 0 8.5V5.5Z"
-              fill="currentColor"
-            ></path>
+              fill="currentColor"></path>
             <path
               d="M5 0.5C5 0.223858 5.22386 0 5.5 0H8.5C8.77614 0 9 0.223858 9 0.5V3.5C9 3.77614 8.77614 4 8.5 4H5.5C5.22386 4 5 3.77614 5 3.5V0.5Z"
-              fill="currentColor"
-            ></path>
+              fill="currentColor"></path>
             <path
               d="M5 5.5C5 5.22386 5.22386 5 5.5 5H8.5C8.77614 5 9 5.22386 9 5.5V8.5C9 8.77614 8.77614 9 8.5 9H5.5C5.22386 9 5 8.77614 5 8.5V5.5Z"
-              fill="currentColor"
-            ></path></svg
-        ></a>
+              fill="currentColor"></path>
+          </svg></a>
       </div>
     </div>
   </div>
-  <div
-    class="row row-cols-1 row-cols-sm-2 row-cols-xl-3 row-cols-xxl-4 g-3 mb-9"
-  >
-    {% for dataa in data %}
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-3 row-cols-xxl-4 g-3 mb-9">
+    {% for dataa in data[5:15] %}
 
     <div class="col">
       <div class="card h-100 hover-actions-trigger">
@@ -219,1318 +244,162 @@
             <h4 class="mb-2 line-clamp-1 lh-sm flex-1 me-5">{{dataa.Title}}</h4>
             <div class="hover-actions top-0 end-0 mt-4 me-4">
               <a href="/business/{{dataa.Id}}">
-                <button
-                  class="btn btn-primary btn-icon flex-shrink-0"
-                  data-bs-toggle="modal"
-                  data-bs-target="#projectsCardViewModal"
-                >
-                  <svg
-                    class="svg-inline--fa fa-chevron-right"
-                    aria-hidden="true"
-                    focusable="false"
-                    data-prefix="fas"
-                    data-icon="chevron-right"
-                    role="img"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 320 512"
-                    data-fa-i2svg=""
-                  >
-                    <path
-                      fill="currentColor"
-                      d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"
-                    ></path></svg
-                  ><!-- <span class="fa-solid fa-chevron-right"></span> Font Awesome fontawesome.com -->
+                <button class="btn btn-primary btn-icon flex-shrink-0" data-bs-toggle="modal"
+                  data-bs-target="#projectsCardViewModal">
+                  <svg class="svg-inline--fa fa-chevron-right" aria-hidden="true" focusable="false" data-prefix="fas"
+                    data-icon="chevron-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"
+                    data-fa-i2svg="">
+                    <path fill="currentColor"
+                      d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z">
+                    </path>
+                  </svg><!-- <span class="fa-solid fa-chevron-right"></span> Font Awesome fontawesome.com -->
                 </button>
               </a>
             </div>
           </div>
-          <span class="badge badge-phoenix fs-10 mb-4 badge-phoenix-success"
-            >completed</span
-          >
+          <span class="badge badge-phoenix fs-10 mb-4 badge-phoenix-success">completed</span>
           <div class="d-flex align-items-center mb-2">
-            <svg
-              class="svg-inline--fa fa-user me-2 text-body-tertiary fs-9 fw-extra-bold"
-              aria-hidden="true"
-              focusable="false"
-              data-prefix="fas"
-              data-icon="user"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 448 512"
-              data-fa-i2svg=""
-            >
-              <path
-                fill="currentColor"
-                d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"
-              ></path></svg
-            ><!-- <span class="fa-solid fa-user me-2 text-body-tertiary fs-9 fw-extra-bold"></span> Font Awesome fontawesome.com -->
+            <svg class="svg-inline--fa fa-user me-2 text-body-tertiary fs-9 fw-extra-bold" aria-hidden="true"
+              focusable="false" data-prefix="fas" data-icon="user" role="img" xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 448 512" data-fa-i2svg="">
+              <path fill="currentColor"
+                d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z">
+              </path>
+            </svg><!-- <span class="fa-solid fa-user me-2 text-body-tertiary fs-9 fw-extra-bold"></span> Font Awesome fontawesome.com -->
             <p class="fw-bold mb-0 text-truncate lh-1">
               Client :
               <span class="fw-semibold text-primary ms-1">
-                Gusteau’s Restaurant</span
-              >
+                Gusteau’s Restaurant</span>
             </p>
           </div>
           <div class="d-flex align-items-center mb-4">
-            <svg
-              class="svg-inline--fa fa-credit-card me-2 text-body-tertiary fs-9 fw-extra-bold"
-              aria-hidden="true"
-              focusable="false"
-              data-prefix="fas"
-              data-icon="credit-card"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 576 512"
-              data-fa-i2svg=""
-            >
-              <path
-                fill="currentColor"
-                d="M64 32C28.7 32 0 60.7 0 96v32H576V96c0-35.3-28.7-64-64-64H64zM576 224H0V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V224zM112 352h64c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16zm112 16c0-8.8 7.2-16 16-16H368c8.8 0 16 7.2 16 16s-7.2 16-16 16H240c-8.8 0-16-7.2-16-16z"
-              ></path></svg
-            ><!-- <span class="fa-solid fa-credit-card me-2 text-body-tertiary fs-9 fw-extra-bold"></span> Font Awesome fontawesome.com -->
+            <svg class="svg-inline--fa fa-credit-card me-2 text-body-tertiary fs-9 fw-extra-bold" aria-hidden="true"
+              focusable="false" data-prefix="fas" data-icon="credit-card" role="img" xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 576 512" data-fa-i2svg="">
+              <path fill="currentColor"
+                d="M64 32C28.7 32 0 60.7 0 96v32H576V96c0-35.3-28.7-64-64-64H64zM576 224H0V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V224zM112 352h64c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16zm112 16c0-8.8 7.2-16 16-16H368c8.8 0 16 7.2 16 16s-7.2 16-16 16H240c-8.8 0-16-7.2-16-16z">
+              </path>
+            </svg><!-- <span class="fa-solid fa-credit-card me-2 text-body-tertiary fs-9 fw-extra-bold"></span> Font Awesome fontawesome.com -->
             <p class="fw-bold mb-0 lh-1">
               Budget : <span class="ms-1 text-body-emphasis">8,742$</span>
             </p>
           </div>
-          <div
-            class="d-flex justify-content-between text-body-tertiary fw-semibold"
-          >
+          <div class="d-flex justify-content-between text-body-tertiary fw-semibold">
             <p class="mb-2">Progress</p>
             <p class="mb-2 text-body-emphasis">100%</p>
           </div>
 
           <div class="d-flex align-items-center mt-4">
             <p class="mb-0 fw-bold fs-9">
-              Started :<span
-                class="fw-semibold text-body-tertiary text-opactity-85 ms-1"
-              >
-                17th Nov. 2020</span
-              >
+              Started :<span class="fw-semibold text-body-tertiary text-opactity-85 ms-1">
+                17th Nov. 2020</span>
             </p>
           </div>
         </div>
       </div>
     </div>
     {%endfor%}
-    <div class="col">
-      <div class="card h-100 hover-actions-trigger">
-        <div class="card-body">
-          <div class="d-flex align-items-center">
-            <h4 class="mb-2 line-clamp-1 lh-sm flex-1 me-5">
-              Project Doughnut Dungeon
-            </h4>
-            <div class="hover-actions top-0 end-0 mt-4 me-4">
-              <button
-                class="btn btn-primary btn-icon flex-shrink-0"
-                data-bs-toggle="modal"
-                data-bs-target="#projectsCardViewModal"
-              >
-                <svg
-                  class="svg-inline--fa fa-chevron-right"
-                  aria-hidden="true"
-                  focusable="false"
-                  data-prefix="fas"
-                  data-icon="chevron-right"
-                  role="img"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 320 512"
-                  data-fa-i2svg=""
-                >
-                  <path
-                    fill="currentColor"
-                    d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"
-                  ></path></svg
-                ><!-- <span class="fa-solid fa-chevron-right"></span> Font Awesome fontawesome.com -->
-              </button>
-            </div>
-          </div>
-          <span class="badge badge-phoenix fs-10 mb-4 badge-phoenix-success"
-            >completed</span
-          >
-          <div class="d-flex align-items-center mb-2">
-            <svg
-              class="svg-inline--fa fa-user me-2 text-body-tertiary fs-9 fw-extra-bold"
-              aria-hidden="true"
-              focusable="false"
-              data-prefix="fas"
-              data-icon="user"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 448 512"
-              data-fa-i2svg=""
-            >
-              <path
-                fill="currentColor"
-                d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"
-              ></path></svg
-            ><!-- <span class="fa-solid fa-user me-2 text-body-tertiary fs-9 fw-extra-bold"></span> Font Awesome fontawesome.com -->
-            <p class="fw-bold mb-0 text-truncate lh-1">
-              Client :
-              <span class="fw-semibold text-primary ms-1">
-                Gusteau’s Restaurant</span
-              >
-            </p>
-          </div>
-          <div class="d-flex align-items-center mb-4">
-            <svg
-              class="svg-inline--fa fa-credit-card me-2 text-body-tertiary fs-9 fw-extra-bold"
-              aria-hidden="true"
-              focusable="false"
-              data-prefix="fas"
-              data-icon="credit-card"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 576 512"
-              data-fa-i2svg=""
-            >
-              <path
-                fill="currentColor"
-                d="M64 32C28.7 32 0 60.7 0 96v32H576V96c0-35.3-28.7-64-64-64H64zM576 224H0V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V224zM112 352h64c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16zm112 16c0-8.8 7.2-16 16-16H368c8.8 0 16 7.2 16 16s-7.2 16-16 16H240c-8.8 0-16-7.2-16-16z"
-              ></path></svg
-            ><!-- <span class="fa-solid fa-credit-card me-2 text-body-tertiary fs-9 fw-extra-bold"></span> Font Awesome fontawesome.com -->
-            <p class="fw-bold mb-0 lh-1">
-              Budget : <span class="ms-1 text-body-emphasis">8,742$</span>
-            </p>
-          </div>
-          <div
-            class="d-flex justify-content-between text-body-tertiary fw-semibold"
-          >
-            <p class="mb-2">Progress</p>
-            <p class="mb-2 text-body-emphasis">100%</p>
-          </div>
 
-          <div class="d-flex align-items-center mt-4">
-            <p class="mb-0 fw-bold fs-9">
-              Started :<span
-                class="fw-semibold text-body-tertiary text-opactity-85 ms-1"
-              >
-                17th Nov. 2020</span
-              >
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card h-100 hover-actions-trigger">
-        <div class="card-body">
-          <div class="d-flex align-items-center">
-            <h4 class="mb-2 line-clamp-1 lh-sm flex-1 me-5">
-              Project Doughnut Dungeon
-            </h4>
-            <div class="hover-actions top-0 end-0 mt-4 me-4">
-              <button
-                class="btn btn-primary btn-icon flex-shrink-0"
-                data-bs-toggle="modal"
-                data-bs-target="#projectsCardViewModal"
-              >
-                <svg
-                  class="svg-inline--fa fa-chevron-right"
-                  aria-hidden="true"
-                  focusable="false"
-                  data-prefix="fas"
-                  data-icon="chevron-right"
-                  role="img"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 320 512"
-                  data-fa-i2svg=""
-                >
-                  <path
-                    fill="currentColor"
-                    d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"
-                  ></path></svg
-                ><!-- <span class="fa-solid fa-chevron-right"></span> Font Awesome fontawesome.com -->
-              </button>
-            </div>
-          </div>
-          <span class="badge badge-phoenix fs-10 mb-4 badge-phoenix-success"
-            >completed</span
-          >
-          <div class="d-flex align-items-center mb-2">
-            <svg
-              class="svg-inline--fa fa-user me-2 text-body-tertiary fs-9 fw-extra-bold"
-              aria-hidden="true"
-              focusable="false"
-              data-prefix="fas"
-              data-icon="user"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 448 512"
-              data-fa-i2svg=""
-            >
-              <path
-                fill="currentColor"
-                d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"
-              ></path></svg
-            ><!-- <span class="fa-solid fa-user me-2 text-body-tertiary fs-9 fw-extra-bold"></span> Font Awesome fontawesome.com -->
-            <p class="fw-bold mb-0 text-truncate lh-1">
-              Client :
-              <span class="fw-semibold text-primary ms-1">
-                Gusteau’s Restaurant</span
-              >
-            </p>
-          </div>
-          <div class="d-flex align-items-center mb-4">
-            <svg
-              class="svg-inline--fa fa-credit-card me-2 text-body-tertiary fs-9 fw-extra-bold"
-              aria-hidden="true"
-              focusable="false"
-              data-prefix="fas"
-              data-icon="credit-card"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 576 512"
-              data-fa-i2svg=""
-            >
-              <path
-                fill="currentColor"
-                d="M64 32C28.7 32 0 60.7 0 96v32H576V96c0-35.3-28.7-64-64-64H64zM576 224H0V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V224zM112 352h64c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16zm112 16c0-8.8 7.2-16 16-16H368c8.8 0 16 7.2 16 16s-7.2 16-16 16H240c-8.8 0-16-7.2-16-16z"
-              ></path></svg
-            ><!-- <span class="fa-solid fa-credit-card me-2 text-body-tertiary fs-9 fw-extra-bold"></span> Font Awesome fontawesome.com -->
-            <p class="fw-bold mb-0 lh-1">
-              Budget : <span class="ms-1 text-body-emphasis">8,742$</span>
-            </p>
-          </div>
-          <div
-            class="d-flex justify-content-between text-body-tertiary fw-semibold"
-          >
-            <p class="mb-2">Progress</p>
-            <p class="mb-2 text-body-emphasis">100%</p>
-          </div>
-
-          <div class="d-flex align-items-center mt-4">
-            <p class="mb-0 fw-bold fs-9">
-              Started :<span
-                class="fw-semibold text-body-tertiary text-opactity-85 ms-1"
-              >
-                17th Nov. 2020</span
-              >
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card h-100 hover-actions-trigger">
-        <div class="card-body">
-          <div class="d-flex align-items-center">
-            <h4 class="mb-2 line-clamp-1 lh-sm flex-1 me-5">
-              Project Doughnut Dungeon
-            </h4>
-            <div class="hover-actions top-0 end-0 mt-4 me-4">
-              <button
-                class="btn btn-primary btn-icon flex-shrink-0"
-                data-bs-toggle="modal"
-                data-bs-target="#projectsCardViewModal"
-              >
-                <svg
-                  class="svg-inline--fa fa-chevron-right"
-                  aria-hidden="true"
-                  focusable="false"
-                  data-prefix="fas"
-                  data-icon="chevron-right"
-                  role="img"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 320 512"
-                  data-fa-i2svg=""
-                >
-                  <path
-                    fill="currentColor"
-                    d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"
-                  ></path></svg
-                ><!-- <span class="fa-solid fa-chevron-right"></span> Font Awesome fontawesome.com -->
-              </button>
-            </div>
-          </div>
-          <span class="badge badge-phoenix fs-10 mb-4 badge-phoenix-success"
-            >completed</span
-          >
-          <div class="d-flex align-items-center mb-2">
-            <svg
-              class="svg-inline--fa fa-user me-2 text-body-tertiary fs-9 fw-extra-bold"
-              aria-hidden="true"
-              focusable="false"
-              data-prefix="fas"
-              data-icon="user"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 448 512"
-              data-fa-i2svg=""
-            >
-              <path
-                fill="currentColor"
-                d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"
-              ></path></svg
-            ><!-- <span class="fa-solid fa-user me-2 text-body-tertiary fs-9 fw-extra-bold"></span> Font Awesome fontawesome.com -->
-            <p class="fw-bold mb-0 text-truncate lh-1">
-              Client :
-              <span class="fw-semibold text-primary ms-1">
-                Gusteau’s Restaurant</span
-              >
-            </p>
-          </div>
-          <div class="d-flex align-items-center mb-4">
-            <svg
-              class="svg-inline--fa fa-credit-card me-2 text-body-tertiary fs-9 fw-extra-bold"
-              aria-hidden="true"
-              focusable="false"
-              data-prefix="fas"
-              data-icon="credit-card"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 576 512"
-              data-fa-i2svg=""
-            >
-              <path
-                fill="currentColor"
-                d="M64 32C28.7 32 0 60.7 0 96v32H576V96c0-35.3-28.7-64-64-64H64zM576 224H0V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V224zM112 352h64c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16zm112 16c0-8.8 7.2-16 16-16H368c8.8 0 16 7.2 16 16s-7.2 16-16 16H240c-8.8 0-16-7.2-16-16z"
-              ></path></svg
-            ><!-- <span class="fa-solid fa-credit-card me-2 text-body-tertiary fs-9 fw-extra-bold"></span> Font Awesome fontawesome.com -->
-            <p class="fw-bold mb-0 lh-1">
-              Budget : <span class="ms-1 text-body-emphasis">8,742$</span>
-            </p>
-          </div>
-          <div
-            class="d-flex justify-content-between text-body-tertiary fw-semibold"
-          >
-            <p class="mb-2">Progress</p>
-            <p class="mb-2 text-body-emphasis">100%</p>
-          </div>
-
-          <div class="d-flex align-items-center mt-4">
-            <p class="mb-0 fw-bold fs-9">
-              Started :<span
-                class="fw-semibold text-body-tertiary text-opactity-85 ms-1"
-              >
-                17th Nov. 2020</span
-              >
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card h-100 hover-actions-trigger">
-        <div class="card-body">
-          <div class="d-flex align-items-center">
-            <h4 class="mb-2 line-clamp-1 lh-sm flex-1 me-5">
-              Project Doughnut Dungeon
-            </h4>
-            <div class="hover-actions top-0 end-0 mt-4 me-4">
-              <button
-                class="btn btn-primary btn-icon flex-shrink-0"
-                data-bs-toggle="modal"
-                data-bs-target="#projectsCardViewModal"
-              >
-                <svg
-                  class="svg-inline--fa fa-chevron-right"
-                  aria-hidden="true"
-                  focusable="false"
-                  data-prefix="fas"
-                  data-icon="chevron-right"
-                  role="img"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 320 512"
-                  data-fa-i2svg=""
-                >
-                  <path
-                    fill="currentColor"
-                    d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"
-                  ></path></svg
-                ><!-- <span class="fa-solid fa-chevron-right"></span> Font Awesome fontawesome.com -->
-              </button>
-            </div>
-          </div>
-          <span class="badge badge-phoenix fs-10 mb-4 badge-phoenix-success"
-            >completed</span
-          >
-          <div class="d-flex align-items-center mb-2">
-            <svg
-              class="svg-inline--fa fa-user me-2 text-body-tertiary fs-9 fw-extra-bold"
-              aria-hidden="true"
-              focusable="false"
-              data-prefix="fas"
-              data-icon="user"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 448 512"
-              data-fa-i2svg=""
-            >
-              <path
-                fill="currentColor"
-                d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"
-              ></path></svg
-            ><!-- <span class="fa-solid fa-user me-2 text-body-tertiary fs-9 fw-extra-bold"></span> Font Awesome fontawesome.com -->
-            <p class="fw-bold mb-0 text-truncate lh-1">
-              Client :
-              <span class="fw-semibold text-primary ms-1">
-                Gusteau’s Restaurant</span
-              >
-            </p>
-          </div>
-          <div class="d-flex align-items-center mb-4">
-            <svg
-              class="svg-inline--fa fa-credit-card me-2 text-body-tertiary fs-9 fw-extra-bold"
-              aria-hidden="true"
-              focusable="false"
-              data-prefix="fas"
-              data-icon="credit-card"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 576 512"
-              data-fa-i2svg=""
-            >
-              <path
-                fill="currentColor"
-                d="M64 32C28.7 32 0 60.7 0 96v32H576V96c0-35.3-28.7-64-64-64H64zM576 224H0V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V224zM112 352h64c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16zm112 16c0-8.8 7.2-16 16-16H368c8.8 0 16 7.2 16 16s-7.2 16-16 16H240c-8.8 0-16-7.2-16-16z"
-              ></path></svg
-            ><!-- <span class="fa-solid fa-credit-card me-2 text-body-tertiary fs-9 fw-extra-bold"></span> Font Awesome fontawesome.com -->
-            <p class="fw-bold mb-0 lh-1">
-              Budget : <span class="ms-1 text-body-emphasis">8,742$</span>
-            </p>
-          </div>
-          <div
-            class="d-flex justify-content-between text-body-tertiary fw-semibold"
-          >
-            <p class="mb-2">Progress</p>
-            <p class="mb-2 text-body-emphasis">100%</p>
-          </div>
-
-          <div class="d-flex align-items-center mt-4">
-            <p class="mb-0 fw-bold fs-9">
-              Started :<span
-                class="fw-semibold text-body-tertiary text-opactity-85 ms-1"
-              >
-                17th Nov. 2020</span
-              >
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card h-100 hover-actions-trigger">
-        <div class="card-body">
-          <div class="d-flex align-items-center">
-            <h4 class="mb-2 line-clamp-1 lh-sm flex-1 me-5">
-              Project Doughnut Dungeon
-            </h4>
-            <div class="hover-actions top-0 end-0 mt-4 me-4">
-              <button
-                class="btn btn-primary btn-icon flex-shrink-0"
-                data-bs-toggle="modal"
-                data-bs-target="#projectsCardViewModal"
-              >
-                <svg
-                  class="svg-inline--fa fa-chevron-right"
-                  aria-hidden="true"
-                  focusable="false"
-                  data-prefix="fas"
-                  data-icon="chevron-right"
-                  role="img"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 320 512"
-                  data-fa-i2svg=""
-                >
-                  <path
-                    fill="currentColor"
-                    d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"
-                  ></path></svg
-                ><!-- <span class="fa-solid fa-chevron-right"></span> Font Awesome fontawesome.com -->
-              </button>
-            </div>
-          </div>
-          <span class="badge badge-phoenix fs-10 mb-4 badge-phoenix-success"
-            >completed</span
-          >
-          <div class="d-flex align-items-center mb-2">
-            <svg
-              class="svg-inline--fa fa-user me-2 text-body-tertiary fs-9 fw-extra-bold"
-              aria-hidden="true"
-              focusable="false"
-              data-prefix="fas"
-              data-icon="user"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 448 512"
-              data-fa-i2svg=""
-            >
-              <path
-                fill="currentColor"
-                d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"
-              ></path></svg
-            ><!-- <span class="fa-solid fa-user me-2 text-body-tertiary fs-9 fw-extra-bold"></span> Font Awesome fontawesome.com -->
-            <p class="fw-bold mb-0 text-truncate lh-1">
-              Client :
-              <span class="fw-semibold text-primary ms-1">
-                Gusteau’s Restaurant</span
-              >
-            </p>
-          </div>
-          <div class="d-flex align-items-center mb-4">
-            <svg
-              class="svg-inline--fa fa-credit-card me-2 text-body-tertiary fs-9 fw-extra-bold"
-              aria-hidden="true"
-              focusable="false"
-              data-prefix="fas"
-              data-icon="credit-card"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 576 512"
-              data-fa-i2svg=""
-            >
-              <path
-                fill="currentColor"
-                d="M64 32C28.7 32 0 60.7 0 96v32H576V96c0-35.3-28.7-64-64-64H64zM576 224H0V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V224zM112 352h64c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16zm112 16c0-8.8 7.2-16 16-16H368c8.8 0 16 7.2 16 16s-7.2 16-16 16H240c-8.8 0-16-7.2-16-16z"
-              ></path></svg
-            ><!-- <span class="fa-solid fa-credit-card me-2 text-body-tertiary fs-9 fw-extra-bold"></span> Font Awesome fontawesome.com -->
-            <p class="fw-bold mb-0 lh-1">
-              Budget : <span class="ms-1 text-body-emphasis">8,742$</span>
-            </p>
-          </div>
-          <div
-            class="d-flex justify-content-between text-body-tertiary fw-semibold"
-          >
-            <p class="mb-2">Progress</p>
-            <p class="mb-2 text-body-emphasis">100%</p>
-          </div>
-
-          <div class="d-flex align-items-center mt-4">
-            <p class="mb-0 fw-bold fs-9">
-              Started :<span
-                class="fw-semibold text-body-tertiary text-opactity-85 ms-1"
-              >
-                17th Nov. 2020</span
-              >
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card h-100 hover-actions-trigger">
-        <div class="card-body">
-          <div class="d-flex align-items-center">
-            <h4 class="mb-2 line-clamp-1 lh-sm flex-1 me-5">
-              Project Doughnut Dungeon
-            </h4>
-            <div class="hover-actions top-0 end-0 mt-4 me-4">
-              <button
-                class="btn btn-primary btn-icon flex-shrink-0"
-                data-bs-toggle="modal"
-                data-bs-target="#projectsCardViewModal"
-              >
-                <svg
-                  class="svg-inline--fa fa-chevron-right"
-                  aria-hidden="true"
-                  focusable="false"
-                  data-prefix="fas"
-                  data-icon="chevron-right"
-                  role="img"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 320 512"
-                  data-fa-i2svg=""
-                >
-                  <path
-                    fill="currentColor"
-                    d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"
-                  ></path></svg
-                ><!-- <span class="fa-solid fa-chevron-right"></span> Font Awesome fontawesome.com -->
-              </button>
-            </div>
-          </div>
-          <span class="badge badge-phoenix fs-10 mb-4 badge-phoenix-success"
-            >completed</span
-          >
-          <div class="d-flex align-items-center mb-2">
-            <svg
-              class="svg-inline--fa fa-user me-2 text-body-tertiary fs-9 fw-extra-bold"
-              aria-hidden="true"
-              focusable="false"
-              data-prefix="fas"
-              data-icon="user"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 448 512"
-              data-fa-i2svg=""
-            >
-              <path
-                fill="currentColor"
-                d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"
-              ></path></svg
-            ><!-- <span class="fa-solid fa-user me-2 text-body-tertiary fs-9 fw-extra-bold"></span> Font Awesome fontawesome.com -->
-            <p class="fw-bold mb-0 text-truncate lh-1">
-              Client :
-              <span class="fw-semibold text-primary ms-1">
-                Gusteau’s Restaurant</span
-              >
-            </p>
-          </div>
-          <div class="d-flex align-items-center mb-4">
-            <svg
-              class="svg-inline--fa fa-credit-card me-2 text-body-tertiary fs-9 fw-extra-bold"
-              aria-hidden="true"
-              focusable="false"
-              data-prefix="fas"
-              data-icon="credit-card"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 576 512"
-              data-fa-i2svg=""
-            >
-              <path
-                fill="currentColor"
-                d="M64 32C28.7 32 0 60.7 0 96v32H576V96c0-35.3-28.7-64-64-64H64zM576 224H0V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V224zM112 352h64c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16zm112 16c0-8.8 7.2-16 16-16H368c8.8 0 16 7.2 16 16s-7.2 16-16 16H240c-8.8 0-16-7.2-16-16z"
-              ></path></svg
-            ><!-- <span class="fa-solid fa-credit-card me-2 text-body-tertiary fs-9 fw-extra-bold"></span> Font Awesome fontawesome.com -->
-            <p class="fw-bold mb-0 lh-1">
-              Budget : <span class="ms-1 text-body-emphasis">8,742$</span>
-            </p>
-          </div>
-          <div
-            class="d-flex justify-content-between text-body-tertiary fw-semibold"
-          >
-            <p class="mb-2">Progress</p>
-            <p class="mb-2 text-body-emphasis">100%</p>
-          </div>
-
-          <div class="d-flex align-items-center mt-4">
-            <p class="mb-0 fw-bold fs-9">
-              Started :<span
-                class="fw-semibold text-body-tertiary text-opactity-85 ms-1"
-              >
-                17th Nov. 2020</span
-              >
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+    
   </div>
-  <div
-    class="mx-n4 mx-lg-n6 px-4 px-lg-6 py-5 border-bottom border-translucent"
-  >
+  <div class="mx-n4 mx-lg-n6 px-4 px-lg-6 py-5 border-bottom border-translucent">
     <h4>Most Recent Boards</h4>
     <p class="mb-4">
       Boards you’ve visited recently. Can be private or public boards.
       <a href="#!"> Change preference</a>
     </p>
     <div class="swiper-theme-container kanban-boards-slider">
-      <div
-        class="swiper theme-slider swiper-initialized swiper-horizontal swiper-backface-hidden"
-        data-swiper='{"slidesPerView":1,"spaceBetween":24,"speed":800,"breakpoints":{"576":{"slidesPerView":2},"1200":{"slidesPerView":3},"1540":{"slidesPerView":4}}}'
-      >
-        <div
-          class="swiper-wrapper"
-          id="swiper-wrapper-bba5a2346f1dab9c"
-          aria-live="polite"
-        >
-          <div
-            class="swiper-slide swiper-slide-active"
-            role="group"
-            aria-label="1 / 5"
-            style="width: 361.25px; margin-right: 24px"
-          >
-            <a
-              class="text-decoration-none"
-              href="../../apps/kanban/kanban.html"
-            >
+      <div class="swiper theme-slider swiper-initialized swiper-horizontal swiper-backface-hidden"
+        data-swiper='{"slidesPerView":1,"spaceBetween":24,"speed":800,"breakpoints":{"576":{"slidesPerView":2},"1200":{"slidesPerView":3},"1540":{"slidesPerView":4}}}'>
+        <div class="swiper-wrapper" id="swiper-wrapper-bba5a2346f1dab9c" aria-live="polite">
+
+{%for dataa in data[15:21]%}
+          <div class="swiper-slide" role="group" aria-label="3 / 5" style="width: 361.25px; margin-right: 24px">
+            <a class="text-decoration-none" href="../../apps/kanban/kanban.html">
               <div class="card overflow-hidden bg-transparent h-100">
                 <div class="position-relative">
-                  <div class="bg-info-darker" style="height: 128px"></div>
-                  <div
-                    class="avatar-group position-absolute"
-                    style="bottom: 1rem; left: 1.5rem"
-                  >
-                    <div
-                      class="avatar avatar-m border border-light-subtle rounded-circle"
-                    >
-                      <img
-                        class="rounded-circle"
-                        src="../../assets/img/team/1.webp"
-                        alt=""
-                      />
+                  <img class="w-100" src="../../assets/img/kanban/board-3.png" style="height: 128px" alt="" />
+                  <div class="avatar-group position-absolute" style="bottom: 1rem; left: 1.5rem">
+                    <div class="avatar avatar-m border border-light-subtle rounded-circle">
+                      <img class="rounded-circle" src="../../assets/img/team/10.webp" alt="" />
                     </div>
-                    <div
-                      class="avatar avatar-m border border-light-subtle rounded-circle"
-                    >
-                      <img
-                        class="rounded-circle"
-                        src="../../assets/img/team/2.webp"
-                        alt=""
-                      />
+                    <div class="avatar avatar-m border border-light-subtle rounded-circle">
+                      <img class="rounded-circle" src="../../assets/img/team/11.webp" alt="" />
                     </div>
-                    <div
-                      class="avatar avatar-m border border-light-subtle rounded-circle"
-                    >
-                      <img
-                        class="rounded-circle"
-                        src="../../assets/img/team/3.webp"
-                        alt=""
-                      />
+                    <div class="avatar avatar-m border border-light-subtle rounded-circle">
+                      <img class="rounded-circle" src="../../assets/img/team/12.webp" alt="" />
                     </div>
-                    <div
-                      class="avatar avatar-m border border-light-subtle rounded-circle"
-                    >
-                      <img
-                        class="rounded-circle"
-                        src="../../assets/img/team/4.webp"
-                        alt=""
-                      />
+                    <div class="avatar avatar-m border border-light-subtle rounded-circle">
+                      <img class="rounded-circle" src="../../assets/img/team/13.webp" alt="" />
                     </div>
-                    <div
-                      class="avatar avatar-m border border-light-subtle rounded-circle"
-                    >
-                      <img
-                        class="rounded-circle"
-                        src="../../assets/img/team/avatar-placeholder.webp"
-                        alt=""
-                      />
+                    <div class="avatar avatar-m border border-light-subtle rounded-circle">
+                      <img class="rounded-circle" src="../../assets/img/team/avatar-placeholder.webp" alt="" />
                     </div>
                   </div>
                 </div>
-                <div
-                  class="card-body d-flex flex-column justify-content-between"
-                >
+                <div class="card-body d-flex flex-column justify-content-between">
                   <div>
-                    <h3 class="text-body">Issue Tickets</h3>
-                    <p class="text-body-tertiary mb-4">Daily task</p>
-                  </div>
-                  <div class="d-flex gap-4">
-                    <h5 class="text-body">
-                      <svg
-                        class="svg-inline--fa fa-list-check text-body-tertiary me-1"
-                        aria-hidden="true"
-                        focusable="false"
-                        data-prefix="fas"
-                        data-icon="list-check"
-                        role="img"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 512 512"
-                        data-fa-i2svg=""
-                      >
-                        <path
-                          fill="currentColor"
-                          d="M152.1 38.2c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 113C-2.3 103.6-2.3 88.4 7 79s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zm0 160c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 273c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zM224 96c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zm0 160c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zM160 416c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H192c-17.7 0-32-14.3-32-32zM48 368a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"
-                        ></path></svg
-                      ><!-- <span class="fa-solid fa-list-check text-body-tertiary me-1"></span> Font Awesome fontawesome.com -->44
-                    </h5>
-                    <h5 class="text-body">
-                      <svg
-                        class="svg-inline--fa fa-comment text-body-tertiary me-1"
-                        aria-hidden="true"
-                        focusable="false"
-                        data-prefix="fas"
-                        data-icon="comment"
-                        role="img"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 512 512"
-                        data-fa-i2svg=""
-                      >
-                        <path
-                          fill="currentColor"
-                          d="M512 240c0 114.9-114.6 208-256 208c-37.1 0-72.3-6.4-104.1-17.9c-11.9 8.7-31.3 20.6-54.3 30.6C73.6 471.1 44.7 480 16 480c-6.5 0-12.3-3.9-14.8-9.9c-2.5-6-1.1-12.8 3.4-17.4l0 0 0 0 0 0 0 0 .3-.3c.3-.3 .7-.7 1.3-1.4c1.1-1.2 2.8-3.1 4.9-5.7c4.1-5 9.6-12.4 15.2-21.6c10-16.6 19.5-38.4 21.4-62.9C17.7 326.8 0 285.1 0 240C0 125.1 114.6 32 256 32s256 93.1 256 208z"
-                        ></path></svg
-                      ><!-- <span class="fa-solid fa-comment text-body-tertiary me-1"></span> Font Awesome fontawesome.com -->12
-                    </h5>
-                    <h5 class="text-body">
-                      <svg
-                        class="svg-inline--fa fa-calendar-xmark text-body-tertiary me-1"
-                        aria-hidden="true"
-                        focusable="false"
-                        data-prefix="fas"
-                        data-icon="calendar-xmark"
-                        role="img"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 448 512"
-                        data-fa-i2svg=""
-                      >
-                        <path
-                          fill="currentColor"
-                          d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zM305 305c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47z"
-                        ></path></svg
-                      ><!-- <span class="fa-solid fa-calendar-xmark text-body-tertiary me-1"></span> Font Awesome fontawesome.com -->3
-                    </h5>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div
-            class="swiper-slide swiper-slide-next"
-            role="group"
-            aria-label="2 / 5"
-            style="width: 361.25px; margin-right: 24px"
-          >
-            <a
-              class="text-decoration-none"
-              href="../../apps/kanban/kanban.html"
-            >
-              <div class="card overflow-hidden bg-transparent h-100">
-                <div class="position-relative">
-                  <img
-                    class="w-100"
-                    src="../../assets/img/kanban/board-2.png"
-                    style="height: 128px"
-                    alt=""
-                  />
-                  <div
-                    class="avatar-group position-absolute"
-                    style="bottom: 1rem; left: 1.5rem"
-                  >
-                    <div
-                      class="avatar avatar-m border border-light-subtle rounded-circle"
-                    >
-                      <img
-                        class="rounded-circle"
-                        src="../../assets/img/team/5.webp"
-                        alt=""
-                      />
-                    </div>
-                    <div
-                      class="avatar avatar-m border border-light-subtle rounded-circle"
-                    >
-                      <img
-                        class="rounded-circle"
-                        src="../../assets/img/team/6.webp"
-                        alt=""
-                      />
-                    </div>
-                    <div
-                      class="avatar avatar-m border border-light-subtle rounded-circle"
-                    >
-                      <img
-                        class="rounded-circle"
-                        src="../../assets/img/team/7.webp"
-                        alt=""
-                      />
-                    </div>
-                    <div
-                      class="avatar avatar-m border border-light-subtle rounded-circle"
-                    >
-                      <img
-                        class="rounded-circle"
-                        src="../../assets/img/team/8.webp"
-                        alt=""
-                      />
-                    </div>
-                    <div
-                      class="avatar avatar-m border border-light-subtle rounded-circle"
-                    >
-                      <img
-                        class="rounded-circle"
-                        src="../../assets/img/team/9.webp"
-                        alt=""
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="card-body d-flex flex-column justify-content-between"
-                >
-                  <div>
-                    <h3 class="text-body">Falcon React</h3>
+                    <h3 class="text-body">{{dataa.Title}}</h3>
                     <p class="text-body-tertiary mb-4">Production line</p>
                   </div>
                   <div class="d-flex gap-4">
                     <h5 class="text-body">
-                      <svg
-                        class="svg-inline--fa fa-list-check text-body-tertiary me-1"
-                        aria-hidden="true"
-                        focusable="false"
-                        data-prefix="fas"
-                        data-icon="list-check"
-                        role="img"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 512 512"
-                        data-fa-i2svg=""
-                      >
-                        <path
-                          fill="currentColor"
-                          d="M152.1 38.2c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 113C-2.3 103.6-2.3 88.4 7 79s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zm0 160c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 273c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zM224 96c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zm0 160c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zM160 416c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H192c-17.7 0-32-14.3-32-32zM48 368a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"
-                        ></path></svg
-                      ><!-- <span class="fa-solid fa-list-check text-body-tertiary me-1"></span> Font Awesome fontawesome.com -->11
+                      <svg class="svg-inline--fa fa-list-check text-body-tertiary me-1" aria-hidden="true"
+                        focusable="false" data-prefix="fas" data-icon="list-check" role="img"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                        <path fill="currentColor"
+                          d="M152.1 38.2c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 113C-2.3 103.6-2.3 88.4 7 79s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zm0 160c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 273c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zM224 96c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zm0 160c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zM160 416c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H192c-17.7 0-32-14.3-32-32zM48 368a48 48 0 1 1 0 96 48 48 0 1 1 0-96z">
+                        </path>
+                      </svg><!-- <span class="fa-solid fa-list-check text-body-tertiary me-1"></span> Font Awesome fontawesome.com -->13
                     </h5>
                     <h5 class="text-body">
-                      <svg
-                        class="svg-inline--fa fa-comment text-body-tertiary me-1"
-                        aria-hidden="true"
-                        focusable="false"
-                        data-prefix="fas"
-                        data-icon="comment"
-                        role="img"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 512 512"
-                        data-fa-i2svg=""
-                      >
-                        <path
-                          fill="currentColor"
-                          d="M512 240c0 114.9-114.6 208-256 208c-37.1 0-72.3-6.4-104.1-17.9c-11.9 8.7-31.3 20.6-54.3 30.6C73.6 471.1 44.7 480 16 480c-6.5 0-12.3-3.9-14.8-9.9c-2.5-6-1.1-12.8 3.4-17.4l0 0 0 0 0 0 0 0 .3-.3c.3-.3 .7-.7 1.3-1.4c1.1-1.2 2.8-3.1 4.9-5.7c4.1-5 9.6-12.4 15.2-21.6c10-16.6 19.5-38.4 21.4-62.9C17.7 326.8 0 285.1 0 240C0 125.1 114.6 32 256 32s256 93.1 256 208z"
-                        ></path></svg
-                      ><!-- <span class="fa-solid fa-comment text-body-tertiary me-1"></span> Font Awesome fontawesome.com -->29
+                      <svg class="svg-inline--fa fa-comment text-body-tertiary me-1" aria-hidden="true"
+                        focusable="false" data-prefix="fas" data-icon="comment" role="img"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                        <path fill="currentColor"
+                          d="M512 240c0 114.9-114.6 208-256 208c-37.1 0-72.3-6.4-104.1-17.9c-11.9 8.7-31.3 20.6-54.3 30.6C73.6 471.1 44.7 480 16 480c-6.5 0-12.3-3.9-14.8-9.9c-2.5-6-1.1-12.8 3.4-17.4l0 0 0 0 0 0 0 0 .3-.3c.3-.3 .7-.7 1.3-1.4c1.1-1.2 2.8-3.1 4.9-5.7c4.1-5 9.6-12.4 15.2-21.6c10-16.6 19.5-38.4 21.4-62.9C17.7 326.8 0 285.1 0 240C0 125.1 114.6 32 256 32s256 93.1 256 208z">
+                        </path>
+                      </svg><!-- <span class="fa-solid fa-comment text-body-tertiary me-1"></span> Font Awesome fontawesome.com -->11
                     </h5>
                     <h5 class="text-body">
-                      <svg
-                        class="svg-inline--fa fa-calendar-xmark text-body-tertiary me-1"
-                        aria-hidden="true"
-                        focusable="false"
-                        data-prefix="fas"
-                        data-icon="calendar-xmark"
-                        role="img"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 448 512"
-                        data-fa-i2svg=""
-                      >
-                        <path
-                          fill="currentColor"
-                          d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zM305 305c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47z"
-                        ></path></svg
-                      ><!-- <span class="fa-solid fa-calendar-xmark text-body-tertiary me-1"></span> Font Awesome fontawesome.com -->9
+                      <svg class="svg-inline--fa fa-calendar-xmark text-body-tertiary me-1" aria-hidden="true"
+                        focusable="false" data-prefix="fas" data-icon="calendar-xmark" role="img"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+                        <path fill="currentColor"
+                          d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zM305 305c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47z">
+                        </path>
+                      </svg><!-- <span class="fa-solid fa-calendar-xmark text-body-tertiary me-1"></span> Font Awesome fontawesome.com -->15
                     </h5>
                   </div>
                 </div>
               </div>
             </a>
           </div>
-          <div
-            class="swiper-slide"
-            role="group"
-            aria-label="3 / 5"
-            style="width: 361.25px; margin-right: 24px"
-          >
-            <a
-              class="text-decoration-none"
-              href="../../apps/kanban/kanban.html"
-            >
-              <div class="card overflow-hidden bg-transparent h-100">
-                <div class="position-relative">
-                  <img
-                    class="w-100"
-                    src="../../assets/img/kanban/board-3.png"
-                    style="height: 128px"
-                    alt=""
-                  />
-                  <div
-                    class="avatar-group position-absolute"
-                    style="bottom: 1rem; left: 1.5rem"
-                  >
-                    <div
-                      class="avatar avatar-m border border-light-subtle rounded-circle"
-                    >
-                      <img
-                        class="rounded-circle"
-                        src="../../assets/img/team/10.webp"
-                        alt=""
-                      />
-                    </div>
-                    <div
-                      class="avatar avatar-m border border-light-subtle rounded-circle"
-                    >
-                      <img
-                        class="rounded-circle"
-                        src="../../assets/img/team/11.webp"
-                        alt=""
-                      />
-                    </div>
-                    <div
-                      class="avatar avatar-m border border-light-subtle rounded-circle"
-                    >
-                      <img
-                        class="rounded-circle"
-                        src="../../assets/img/team/12.webp"
-                        alt=""
-                      />
-                    </div>
-                    <div
-                      class="avatar avatar-m border border-light-subtle rounded-circle"
-                    >
-                      <img
-                        class="rounded-circle"
-                        src="../../assets/img/team/13.webp"
-                        alt=""
-                      />
-                    </div>
-                    <div
-                      class="avatar avatar-m border border-light-subtle rounded-circle"
-                    >
-                      <img
-                        class="rounded-circle"
-                        src="../../assets/img/team/avatar-placeholder.webp"
-                        alt=""
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="card-body d-flex flex-column justify-content-between"
-                >
-                  <div>
-                    <h3 class="text-body">Rebuilding</h3>
-                    <p class="text-body-tertiary mb-4">Production line</p>
-                  </div>
-                  <div class="d-flex gap-4">
-                    <h5 class="text-body">
-                      <svg
-                        class="svg-inline--fa fa-list-check text-body-tertiary me-1"
-                        aria-hidden="true"
-                        focusable="false"
-                        data-prefix="fas"
-                        data-icon="list-check"
-                        role="img"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 512 512"
-                        data-fa-i2svg=""
-                      >
-                        <path
-                          fill="currentColor"
-                          d="M152.1 38.2c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 113C-2.3 103.6-2.3 88.4 7 79s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zm0 160c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 273c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zM224 96c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zm0 160c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zM160 416c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H192c-17.7 0-32-14.3-32-32zM48 368a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"
-                        ></path></svg
-                      ><!-- <span class="fa-solid fa-list-check text-body-tertiary me-1"></span> Font Awesome fontawesome.com -->13
-                    </h5>
-                    <h5 class="text-body">
-                      <svg
-                        class="svg-inline--fa fa-comment text-body-tertiary me-1"
-                        aria-hidden="true"
-                        focusable="false"
-                        data-prefix="fas"
-                        data-icon="comment"
-                        role="img"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 512 512"
-                        data-fa-i2svg=""
-                      >
-                        <path
-                          fill="currentColor"
-                          d="M512 240c0 114.9-114.6 208-256 208c-37.1 0-72.3-6.4-104.1-17.9c-11.9 8.7-31.3 20.6-54.3 30.6C73.6 471.1 44.7 480 16 480c-6.5 0-12.3-3.9-14.8-9.9c-2.5-6-1.1-12.8 3.4-17.4l0 0 0 0 0 0 0 0 .3-.3c.3-.3 .7-.7 1.3-1.4c1.1-1.2 2.8-3.1 4.9-5.7c4.1-5 9.6-12.4 15.2-21.6c10-16.6 19.5-38.4 21.4-62.9C17.7 326.8 0 285.1 0 240C0 125.1 114.6 32 256 32s256 93.1 256 208z"
-                        ></path></svg
-                      ><!-- <span class="fa-solid fa-comment text-body-tertiary me-1"></span> Font Awesome fontawesome.com -->11
-                    </h5>
-                    <h5 class="text-body">
-                      <svg
-                        class="svg-inline--fa fa-calendar-xmark text-body-tertiary me-1"
-                        aria-hidden="true"
-                        focusable="false"
-                        data-prefix="fas"
-                        data-icon="calendar-xmark"
-                        role="img"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 448 512"
-                        data-fa-i2svg=""
-                      >
-                        <path
-                          fill="currentColor"
-                          d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zM305 305c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47z"
-                        ></path></svg
-                      ><!-- <span class="fa-solid fa-calendar-xmark text-body-tertiary me-1"></span> Font Awesome fontawesome.com -->15
-                    </h5>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div
-            class="swiper-slide"
-            role="group"
-            aria-label="4 / 5"
-            style="width: 361.25px; margin-right: 24px"
-          >
-            <a
-              class="text-decoration-none"
-              href="../../apps/kanban/kanban.html"
-            >
-              <div class="card overflow-hidden bg-transparent h-100">
-                <div class="position-relative">
-                  <img
-                    class="w-100"
-                    src="../../assets/img/kanban/board-4.png"
-                    style="height: 128px"
-                    alt=""
-                  />
-                  <div
-                    class="avatar-group position-absolute"
-                    style="bottom: 1rem; left: 1.5rem"
-                  >
-                    <div
-                      class="avatar avatar-m border border-light-subtle rounded-circle"
-                    >
-                      <img
-                        class="rounded-circle"
-                        src="../../assets/img/team/14.webp"
-                        alt=""
-                      />
-                    </div>
-                    <div
-                      class="avatar avatar-m border border-light-subtle rounded-circle"
-                    >
-                      <img
-                        class="rounded-circle"
-                        src="../../assets/img/team/15.webp"
-                        alt=""
-                      />
-                    </div>
-                    <div
-                      class="avatar avatar-m border border-light-subtle rounded-circle"
-                    >
-                      <img
-                        class="rounded-circle"
-                        src="../../assets/img/team/16.webp"
-                        alt=""
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="card-body d-flex flex-column justify-content-between"
-                >
-                  <div>
-                    <h3 class="text-body">ThemePro Devs</h3>
-                    <p class="text-body-tertiary mb-4">Project Management</p>
-                  </div>
-                  <div class="d-flex gap-4">
-                    <h5 class="text-body">
-                      <svg
-                        class="svg-inline--fa fa-list-check text-body-tertiary me-1"
-                        aria-hidden="true"
-                        focusable="false"
-                        data-prefix="fas"
-                        data-icon="list-check"
-                        role="img"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 512 512"
-                        data-fa-i2svg=""
-                      >
-                        <path
-                          fill="currentColor"
-                          d="M152.1 38.2c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 113C-2.3 103.6-2.3 88.4 7 79s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zm0 160c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 273c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zM224 96c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zm0 160c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zM160 416c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H192c-17.7 0-32-14.3-32-32zM48 368a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"
-                        ></path></svg
-                      ><!-- <span class="fa-solid fa-list-check text-body-tertiary me-1"></span> Font Awesome fontawesome.com -->103
-                    </h5>
-                    <h5 class="text-body">
-                      <svg
-                        class="svg-inline--fa fa-comment text-body-tertiary me-1"
-                        aria-hidden="true"
-                        focusable="false"
-                        data-prefix="fas"
-                        data-icon="comment"
-                        role="img"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 512 512"
-                        data-fa-i2svg=""
-                      >
-                        <path
-                          fill="currentColor"
-                          d="M512 240c0 114.9-114.6 208-256 208c-37.1 0-72.3-6.4-104.1-17.9c-11.9 8.7-31.3 20.6-54.3 30.6C73.6 471.1 44.7 480 16 480c-6.5 0-12.3-3.9-14.8-9.9c-2.5-6-1.1-12.8 3.4-17.4l0 0 0 0 0 0 0 0 .3-.3c.3-.3 .7-.7 1.3-1.4c1.1-1.2 2.8-3.1 4.9-5.7c4.1-5 9.6-12.4 15.2-21.6c10-16.6 19.5-38.4 21.4-62.9C17.7 326.8 0 285.1 0 240C0 125.1 114.6 32 256 32s256 93.1 256 208z"
-                        ></path></svg
-                      ><!-- <span class="fa-solid fa-comment text-body-tertiary me-1"></span> Font Awesome fontawesome.com -->2
-                    </h5>
-                    <h5 class="text-body">
-                      <svg
-                        class="svg-inline--fa fa-calendar-xmark text-body-tertiary me-1"
-                        aria-hidden="true"
-                        focusable="false"
-                        data-prefix="fas"
-                        data-icon="calendar-xmark"
-                        role="img"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 448 512"
-                        data-fa-i2svg=""
-                      >
-                        <path
-                          fill="currentColor"
-                          d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zM305 305c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47z"
-                        ></path></svg
-                      ><!-- <span class="fa-solid fa-calendar-xmark text-body-tertiary me-1"></span> Font Awesome fontawesome.com -->20
-                    </h5>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div
-            class="swiper-slide"
-            role="group"
-            aria-label="5 / 5"
-            style="width: 361.25px; margin-right: 24px"
-          >
-            <a
-              class="btn btn-phoenix-primary d-flex flex-center h-100 w-100 fs-7 fw-semibold text-truncate"
-              href="../../apps/kanban/create-kanban-board.html"
-              ><svg
-                class="svg-inline--fa fa-circle-plus fs-8 me-2"
-                aria-hidden="true"
-                focusable="false"
-                data-prefix="fas"
-                data-icon="circle-plus"
-                role="img"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 512 512"
-                data-fa-i2svg=""
-              >
-                <path
-                  fill="currentColor"
-                  d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"
-                ></path></svg
-              ><!-- <span class="fa-solid fa-plus-circle fs-8 me-2"></span> Font Awesome fontawesome.com -->Create
-              New Board</a
-            >
-          </div>
+          {%endfor%}
+          
         </div>
-        <span
-          class="swiper-notification"
-          aria-live="assertive"
-          aria-atomic="true"
-        ></span>
+        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
       </div>
       <div class="swiper-nav">
-        <div
-          class="swiper-button-next"
-          tabindex="0"
-          role="button"
-          aria-label="Next slide"
-          aria-controls="swiper-wrapper-bba5a2346f1dab9c"
-          aria-disabled="false"
-        >
-          <svg
-            class="svg-inline--fa fa-chevron-right fs-11"
-            aria-hidden="true"
-            focusable="false"
-            data-prefix="fas"
-            data-icon="chevron-right"
-            role="img"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 320 512"
-            data-fa-i2svg=""
-          >
-            <path
-              fill="currentColor"
-              d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"
-            ></path></svg
-          ><!-- <span class="fas fa-chevron-right fs-11"></span> Font Awesome fontawesome.com -->
+        <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide"
+          aria-controls="swiper-wrapper-bba5a2346f1dab9c" aria-disabled="false">
+          <svg class="svg-inline--fa fa-chevron-right fs-11" aria-hidden="true" focusable="false" data-prefix="fas"
+            data-icon="chevron-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"
+            data-fa-i2svg="">
+            <path fill="currentColor"
+              d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z">
+            </path>
+          </svg><!-- <span class="fas fa-chevron-right fs-11"></span> Font Awesome fontawesome.com -->
         </div>
-        <div
-          class="swiper-button-prev swiper-button-disabled"
-          tabindex="-1"
-          role="button"
-          aria-label="Previous slide"
-          aria-controls="swiper-wrapper-bba5a2346f1dab9c"
-          aria-disabled="true"
-        >
-          <svg
-            class="svg-inline--fa fa-chevron-left fs-11"
-            aria-hidden="true"
-            focusable="false"
-            data-prefix="fas"
-            data-icon="chevron-left"
-            role="img"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 320 512"
-            data-fa-i2svg=""
-          >
-            <path
-              fill="currentColor"
-              d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"
-            ></path></svg
-          ><!-- <span class="fas fa-chevron-left fs-11"></span> Font Awesome fontawesome.com -->
+        <div class="swiper-button-prev swiper-button-disabled" tabindex="-1" role="button" aria-label="Previous slide"
+          aria-controls="swiper-wrapper-bba5a2346f1dab9c" aria-disabled="true">
+          <svg class="svg-inline--fa fa-chevron-left fs-11" aria-hidden="true" focusable="false" data-prefix="fas"
+            data-icon="chevron-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"
+            data-fa-i2svg="">
+            <path fill="currentColor"
+              d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z">
+            </path>
+          </svg><!-- <span class="fas fa-chevron-left fs-11"></span> Font Awesome fontawesome.com -->
         </div>
       </div>
     </div>
@@ -1540,15 +409,9 @@
     <div class="row g-0 justify-content-between align-items-center h-100">
       <div class="col-12 col-sm-auto text-center">
         <p class="mb-0 mt-2 mt-sm-0 text-body">
-          Thank you for creating with Phoenix<span
-            class="d-none d-sm-inline-block"
-          ></span
-          ><span class="d-none d-sm-inline-block mx-1">|</span
-          ><br class="d-sm-none" />2025 ©<a
-            class="mx-1"
-            href="https://themewagon.com"
-            >Themewagon</a
-          >
+          Thank you for creating with Phoenix<span class="d-none d-sm-inline-block"></span><span
+            class="d-none d-sm-inline-block mx-1">|</span><br class="d-sm-none" />2025 ©<a class="mx-1"
+            href="https://themewagon.com">Themewagon</a>
         </p>
       </div>
       <div class="col-12 col-sm-auto text-center">
@@ -1560,3 +423,12 @@
 
 <script src="/static/js/swiper-bundle.min.js"></script>
 {% include 'includes/bottombar.html' %}
+
+
+<script>
+	document.getElementById('searchForm2').addEventListener('submit', function(event) {
+		event.preventDefault(); // Prevent the default form submission
+		const searchText = document.getElementById('searchInput2').value;
+		window.location.href = `/explore/${encodeURIComponent(searchText)}`;
+	});
+</script>
